@@ -18,4 +18,16 @@ createdb:
 dropdb:
 	docker exec -it postgresdb dropdb bulter
 
-.PHONY: dbdatafolder dbmigrationfolder network postgres createdb dropdb
+migrateup1:
+	migrate -path DatabaseMigration -database "$(DB_URL)" -verbose up 1
+
+migratedown1:
+	migrate -path DatabaseMigration -database "$(DB_URL)" -verbose down 1
+
+
+migrateup:
+	migrate -path DatabaseMigration -database "$(DB_URL)" -verbose up
+
+migratedown:
+	migrate -path DatabaseMigration -database "$(DB_URL)" -verbose down
+.PHONY: dbdatafolder dbmigrationfolder network postgres createdb dropdb migrateup1 migratedown1 migrateup migratedown
