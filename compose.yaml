@@ -1,0 +1,12 @@
+services:
+  postgresdb:
+    container_name: postgresdb
+    image: postgres:16.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: bulter
+    ports:
+      - 15432:5432
+    volumes:
+      - ./DatabaseData:/var/lib/postgresql/data
